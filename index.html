@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#050b08">
+  <meta name="description" content="Terminal de investigação — Arquivo Ômega">
+  <title>ARQUIVO ÔMEGA // Terminal de investigação</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="scanlines" aria-hidden="true"></div>
+  <div class="noise" aria-hidden="true"></div>
+
+  <main class="shell">
+    <header class="topbar">
+      <!--
+      
+      <a class="brand" href="#" aria-label="Arquivo Ômega">
+        <span class="brand-mark">Ω</span>
+        <span>ARQUIVO<span class="muted">_</span>ÔMEGA</span>
+      </a>
+      -->
+      <div class="top-status"><span class="pulse"></span> SISTEMA <b>ONLINE</b></div>
+    </header>
+
+    <section id="loginScreen" class="login-wrap">
+      <div class="eyebrow">REDE INTERNA // ACESSO RESTRITO</div>
+      <div class="login-panel">
+        <div class="panel-heading">
+          <span class="lock-icon">▣</span>
+          <div>
+            <h1>IDENTIFICAÇÃO</h1>
+            <p>Autentique-se para acessar o terminal.</p>
+          </div>
+        </div>
+        <form id="loginForm" autocomplete="off">
+          <label for="username">IDENTIFICAÇÃO DO OPERADOR</label>
+          <input id="username" name="username" type="email" placeholder="usuario@dominio.gov.br" required>
+          <label for="loginPassword">CHAVE DE ACESSO</label>
+          <div class="password-field">
+            <input id="loginPassword" name="password" type="password" placeholder="••••••••" required>
+            <button type="button" class="reveal" data-target="loginPassword" aria-label="Mostrar senha">◉</button>
+          </div>
+          <p id="loginError" class="error" role="alert"></p>
+          <button class="primary-btn" type="submit">INICIAR SESSÃO <span>↗</span></button>
+        </form>
+        <div class="login-foot"><span>CRIPTOGRAFIA LOCAL</span><span>PROTOCOLO 07-A</span></div>
+      </div>
+      <p class="small-note">ACESSO MONITORADO · TODAS AS AÇÕES SÃO REGISTRADAS</p>
+    </section>
+
+    <section id="terminalScreen" class="terminal-screen hidden">
+      <div class="dashboard-head">
+        <div>
+          <div class="eyebrow">SESSÃO AUTENTICADA // NÍVEL DE ACESSO 03</div>
+          <h1>TERMINAL DE <span>INVESTIGAÇÃO</span></h1>
+          <p class="subhead">Há fragmentos escondidos no sistema. Descubra as palavras-chave.</p>
+        </div>
+        <button id="logoutBtn" class="logout-btn">ENCERRAR SESSÃO ↗</button>
+      </div>
+
+      <div class="meta-grid">
+        <div class="meta-card"><span>OPERADOR</span><b>JOÃO PORTO</b></div>
+        <div class="meta-card"><span>CONEXÃO</span><b class="green">SEGURA ●</b></div>
+        <div class="meta-card"><span>ARQUIVOS DESBLOQUEADOS</span><b id="unlockCount">00 / 04</b></div>
+      </div>
+
+      <div class="terminal-window">
+        <div class="terminal-title">
+          <div class="window-dots"><i></i><i></i><i></i></div>
+          <span>investigador://root/access</span>
+          <span class="terminal-live">LIVE</span>
+        </div>
+        <div id="output" class="output" aria-live="polite">
+          <p class="dim">ARQUIVO ÔMEGA — INTERFACE DE CONSULTA v.4.06</p>
+          <p class="dim">Digite uma palavra-chave para consultar os registros.</p>
+          <p class="system-line">[SISTEMA] Aguardando entrada do operador<span class="cursor">_</span></p>
+        </div>
+        <form id="commandForm" class="command-form" autocomplete="off">
+          <label for="commandInput"><span class="prompt">root@investigador:~$</span></label>
+          <input id="commandInput" type="text" placeholder="insira a palavra-chave..." spellcheck="false" autocapitalize="off" required>
+          <button type="submit" aria-label="Enviar comando">ENVIAR ↵</button>
+        </form>
+      </div>
+
+      <div class="bottom-grid">
+        <section class="info-card">
+          <div class="card-title">▸ DIRETRIZES</div>
+          <p>As palavras-chave podem estar em qualquer combinação de maiúsculas e minúsculas. Espaços e hífens não alteram a consulta especial.</p>
+        </section>
+        <section class="info-card">
+          <div class="card-title">▸ STATUS DOS REGISTROS</div>
+          <div id="recordList" class="record-list">
+            <span><i class="record-dot"></i> REGISTRO 01 <b>TRANCADO</b></span>
+            <span><i class="record-dot"></i> REGISTRO 02 <b>TRANCADO</b></span>
+            <span><i class="record-dot"></i> REGISTRO 03 <b>TRANCADO</b></span>
+            <span><i class="record-dot gold-dot"></i> OBJETO <b>TRANCADO</b></span>
+          </div>
+        </section>
+      </div>
+      <footer class="footer">ARQUIVO INVESTIGADOR <span>·</span> TERMINAL LOCAL <span>·</span> FIM DA TRANSMISSÃO</footer>
+    </section>
+  </main>
+
+  <div id="alertOverlay" class="alert-overlay" aria-hidden="true">
+    <div id="alertCard" class="alert-card">
+      <div class="alert-symbol">✦</div>
+      <div class="alert-kicker">NOVA INFORMAÇÃO DESBLOQUEADA</div>
+      <h2 id="alertTitle">REGISTRO LIBERADO</h2>
+      <p id="alertMessage">Um novo fragmento foi recuperado.</p>
+      <button id="closeAlert" class="primary-btn">VOLTAR AO TERMINAL <span>↵</span></button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
